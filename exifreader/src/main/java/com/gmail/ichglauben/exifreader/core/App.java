@@ -43,6 +43,7 @@ public class App extends CustomClass {
 							+ split[1]);
 				}
 			}
+			print("\t---------------------------------------------------\n");
 		}
 	}
 
