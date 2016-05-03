@@ -13,9 +13,13 @@ public class App extends CustomClass {
 		Path img1 = Paths.get("K:\\media\\graphics\\jpegs\\cats\\misc\\ocelot.jpg"),
 				img2 = Paths.get("K:\\media\\graphics\\jpegs\\cats\\misc\\bobcat.jpg");
 
+		testJpeg(img2);
+		testReaderPrintResults(img1);
+	}
+
+	private static void testJpeg(Path img2) {
 		if (null != img2) {
 			if (img2.toFile().exists()) {
-				testReaderPrintResults(img1);
 				String extension = null;
 				if (null != (extension = ExtensionExtractor.extract(img2.toAbsolutePath().toString(), true))) {
 					print("Image Type:  " + extension);
