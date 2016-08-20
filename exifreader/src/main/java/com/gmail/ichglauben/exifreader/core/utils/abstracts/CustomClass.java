@@ -11,7 +11,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public abstract class CustomClass {
-	private final static javax.swing.ImageIcon icon = createImageIcon("/large.gif");
+	private final javax.swing.ImageIcon icon = createImageIcon("/large.gif");
 
 	/**
 	 * Default constructor
@@ -20,7 +20,7 @@ public abstract class CustomClass {
 		super();
 	}
 
-	public static void error(Exception e) {
+	protected void error(Exception e) {
 		if (null != e) {
 			String local_message = e.getLocalizedMessage();
 			String message = e.getMessage();
@@ -40,28 +40,18 @@ public abstract class CustomClass {
 		return;
 	}
 
-	public static void print(String string) {
-		if (null != string) {
-			if (!new String(string).isEmpty()) {
-				System.out.println(string);
-			}
-		}
+
+	protected void print(Object o) { 
+		if (null != o)
+			System.out.print(String.valueOf(o));
+	}
+	
+	protected void println(Object o) { 
+		if (null != o)
+			System.out.println(String.valueOf(o));
 	}
 
-	public static void print(Object string) {
-		String temp = null;
-		if (null != (temp = String.valueOf(string))) {
-			print(temp);
-		} else if (null == temp) {
-			try {
-				temp = string.toString();
-			} catch (Exception exception) {
-				return;
-			}
-		}
-	}
-
-	public static List<String> makeList(Map<String, String> hash) {
+	protected List<String> makeList(Map<String, String> hash) {
 		List<String> list = null;
 
 		if (null != hash) {
@@ -77,13 +67,13 @@ public abstract class CustomClass {
 		return list;
 	}
 
-	public static void alert(Object msg) {
+	protected  void alert(Object msg) {
 		Object[] options = { "Acknowledge" };
 		int n = javax.swing.JOptionPane.showOptionDialog(null, String.valueOf(msg), "Alert",
 				javax.swing.JOptionPane.OK_OPTION, javax.swing.JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
 	}
 
-	public static String stamp() {
+	protected  String stamp() {
 		Calendar now = Calendar.getInstance();
 		int year = now.get(Calendar.YEAR);
 		int mon = now.get(Calendar.MONTH) + 1;
@@ -101,7 +91,7 @@ public abstract class CustomClass {
 		return date;
 	}
 
-	public static void detectPlatform() {
+	protected  void detectPlatform() {
 		final String os = FileSystemConstants.OS;
 		String windows = ".*windows.*";
 		String linux = ".*linux.*";
@@ -120,7 +110,7 @@ public abstract class CustomClass {
 		}
 	}
 
-	private static void setDefaultLookAndFeel() {
+	private  void setDefaultLookAndFeel() {
 		try {
 			UIManager.setLookAndFeel(PlatformConstants.METAL);
 			return;
@@ -135,7 +125,7 @@ public abstract class CustomClass {
 		}
 	}
 
-	private static void setGtkLookAndFeel() {
+	private  void setGtkLookAndFeel() {
 		try {
 			UIManager.setLookAndFeel(PlatformConstants.GTK);
 			return;
@@ -150,7 +140,7 @@ public abstract class CustomClass {
 		}
 	}
 
-	private static void setLinuxLookAndFeel() {
+	private  void setLinuxLookAndFeel() {
 		try {
 			UIManager.setLookAndFeel(PlatformConstants.LINUX);
 			return;
@@ -165,7 +155,7 @@ public abstract class CustomClass {
 		}
 	}
 
-	private static void setWindowsLookAndFeel() {
+	private  void setWindowsLookAndFeel() {
 		try {
 			UIManager.setLookAndFeel(PlatformConstants.WIN);
 			return;
@@ -191,7 +181,7 @@ public abstract class CustomClass {
 		}
 	}
 
-	private static javax.swing.ImageIcon createImageIcon(String path) {
+	private  javax.swing.ImageIcon createImageIcon(String path) {
 		java.net.URL imgURL = CustomClass.class.getResource(path);
 		if (imgURL != null) {
 			return new javax.swing.ImageIcon(imgURL);
@@ -205,23 +195,23 @@ public abstract class CustomClass {
 		return "Custom Utilities";
 	}
 
-	private final static class PlatformConstants {
-		public final static String GTK = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
-		public final static String LINUX = "com.sun.java.swing.plat.linux.LinuxLookAndFeel";
-		public final static String WIN = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
-		public final static String WINCLASSIC = "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel";
-		public final static String MOTIF = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
-		public final static String METAL = "javax.swing.plaf.metal.MetalLookAndFeel";
-		public final static String NIMBUS = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
+	public final static class PlatformConstants {
+		protected final static  String GTK = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+		protected final static  String LINUX = "com.sun.java.swing.plat.linux.LinuxLookAndFeel";
+		protected final static  String WIN = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+		protected final static  String WINCLASSIC = "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel";
+		protected final static String MOTIF = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
+		protected final static  String METAL = "javax.swing.plaf.metal.MetalLookAndFeel";
+		protected final static String NIMBUS = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
 	}
 
-	private final static class FileSystemConstants {
-		public final static String OS = System.getProperty("os.name").toLowerCase();
-		public final static String OS_ARCH = System.getProperty("os.arch").toLowerCase();
-		public final static String OS_VERSION = System.getProperty("os.version").toLowerCase();
-		public final static String FILESEPARATOR = FileSystems.getDefault().getSeparator();
-		public final static String USRDIR = System.getProperty("user.dir").toLowerCase() + FILESEPARATOR;
-		public final static String USRHOME = System.getProperty("user.home").toLowerCase() + FILESEPARATOR;
+	public final static  class FileSystemConstants {
+		protected final static String OS = System.getProperty("os.name").toLowerCase();
+		protected final static String OS_ARCH = System.getProperty("os.arch").toLowerCase();
+		protected final static String OS_VERSION = System.getProperty("os.version").toLowerCase();
+		protected final static String FILESEPARATOR = FileSystems.getDefault().getSeparator();
+		protected final static String USRDIR = System.getProperty("user.dir").toLowerCase() + FILESEPARATOR;
+		protected final static String USRHOME = System.getProperty("user.home").toLowerCase() + FILESEPARATOR;
 
 	}
 

@@ -10,8 +10,9 @@ import java.util.Map;
 import org.junit.Test;
 
 import com.gmail.ichglauben.exifreader.core.concretes.ExifReader;
+import com.gmail.ichglauben.exifreader.core.utils.abstracts.CustomClass;
 
-public class ExifReaderTests {
+public class ExifReaderTests extends CustomClass {
 	ClassLoader loader = getClass().getClassLoader();
 	ExifReader er;
 	
@@ -129,12 +130,5 @@ public class ExifReaderTests {
 		
 	}
 
-	void print(Object o) { 
-		System.out.print(String.valueOf(o));
-	}
-	
-	void println(Object o) { 
-		System.out.println(String.valueOf(o));
-	}
 }
 
