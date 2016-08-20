@@ -62,7 +62,7 @@ public abstract class CustomClass {
 	}
 
 	public static List<String> makeList(Map<String, String> hash) {
-		List list = null;
+		List<String> list = null;
 
 		if (null != hash) {
 			list = new ArrayList<String>();

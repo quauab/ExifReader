@@ -1,0 +1,140 @@
+package com.gmail.ichglauben.exifreader.concretes;
+
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.util.Map;
+
+import org.junit.Test;
+
+import com.gmail.ichglauben.exifreader.core.concretes.ExifReader;
+
+public class ExifReaderTests {
+	ClassLoader loader = getClass().getClassLoader();
+	ExifReader er;
+	
+	@Test
+	public void testExifReaderInstantiated() {
+		assertTrue("ExifReader not null", null == er);		
+
+		er = new ExifReader();
+		assertTrue("ExifReader null", null != er);
+		
+		er = null;
+		assertTrue("ExifReader not null", null == er);
+	}
+	
+	@Test
+	public void testExifReaderSearchFilePathStringMethods() throws URISyntaxException {
+		er = new ExifReader();
+		
+		File fileBobcat = new File(loader.getResource("bobcat.jpg").getFile());
+		File fileFishingcat = new File(loader.getResource("fishingcat.jpg").getFile());
+		File fileOcelot = new File(loader.getResource("ocelot.jpg").getFile());
+		
+		Path pathBobcat = fileBobcat.toPath();
+		Path pathFishingcat = fileFishingcat.toPath();
+		Path pathOcelot = fileOcelot.toPath();
+		
+		String stringBobcat = pathBobcat.toAbsolutePath().toString();
+		String stringFishingcat = pathFishingcat.toAbsolutePath().toString();
+		String stringOcelot = pathOcelot.toAbsolutePath().toString();
+		
+		er.search(pathBobcat);	
+		print(pathBobcat.getFileName() + " File:\t");
+		Map<String,String> bobcatTags = er.getTagsMap();
+		assertTrue("Map is null",null != bobcatTags);
+		
+		for (Map.Entry<String,String> me:bobcatTags.entrySet()) {
+			println(me.getKey() + "\t" + me.getValue());
+		}
+		
+		er.search(fileBobcat);	
+		print(pathBobcat.getFileName() + " Path:\t");
+		bobcatTags = er.getTagsMap();
+		assertTrue("Map is null",null != bobcatTags);
+		
+		for (Map.Entry<String,String> me:bobcatTags.entrySet()) {
+			println(me.getKey() + "\t" + me.getValue());
+		}
+		
+		er.search(stringBobcat);	
+		print(pathBobcat.getFileName() + " String:\t");
+		bobcatTags = er.getTagsMap();
+		assertTrue("Map is null",null != bobcatTags);
+		
+		for (Map.Entry<String,String> me:bobcatTags.entrySet()) {
+			println(me.getKey() + "\t" + me.getValue());
+		}
+		
+		println("---------------------------------------------------------------------\n");
+		
+		er.search(pathFishingcat);	
+		print(pathFishingcat.getFileName() + " File:\t");
+		Map<String,String> fishingcatTags = er.getTagsMap();
+		assertTrue("Map is null", null != fishingcatTags);
+		
+		for (Map.Entry<String,String> me:fishingcatTags.entrySet()) {
+			println(me.getKey() + "\t" + me.getValue());
+		}
+		
+		er.search(fileFishingcat);	
+		print(pathFishingcat.getFileName() + " Path:\t");
+		fishingcatTags = er.getTagsMap();
+		assertTrue("Map is null", null != fishingcatTags);		
+		
+		for (Map.Entry<String,String> me:fishingcatTags.entrySet()) {
+			println(me.getKey() + "\t" + me.getValue());
+		}
+		
+		er.search(stringFishingcat);	
+		print(pathFishingcat.getFileName() + " String:\t");
+		fishingcatTags = er.getTagsMap();
+		assertTrue("Map is null", null != fishingcatTags);		
+		
+		for (Map.Entry<String,String> me:fishingcatTags.entrySet()) {
+			println(me.getKey() + "\t" + me.getValue());
+		}
+		
+		println("---------------------------------------------------------------------\n");
+		
+		er.search(pathOcelot);	
+		print(pathOcelot.getFileName() + " File:\t");
+		Map<String,String> ocelotTags = er.getTagsMap();
+		assertTrue("Map is null",null != ocelotTags);
+		
+		for (Map.Entry<String,String> me:ocelotTags.entrySet()) {
+			println(me.getKey() + "\t" + me.getValue());
+		}
+		
+		er.search(fileOcelot);	
+		print(pathOcelot.getFileName() + " Path:\t");
+		ocelotTags = er.getTagsMap();
+		assertTrue("Map is null",null != ocelotTags);
+		
+		for (Map.Entry<String,String> me:er.getTagsMap().entrySet()) {
+			println(me.getKey() + "\t" + me.getValue());
+		}
+		
+		er.search(stringOcelot);	
+		print(pathOcelot.getFileName() + " String:\t");
+		ocelotTags = er.getTagsMap();
+		assertTrue("Map is null",null != ocelotTags);
+		
+		for (Map.Entry<String,String> me:er.getTagsMap().entrySet()) {
+			println(me.getKey() + "\t" + me.getValue());
+		}
+		
+	}
+
+	void print(Object o) { 
+		System.out.print(String.valueOf(o));
+	}
+	
+	void println(Object o) { 
+		System.out.println(String.valueOf(o));
+	}
+}
+
