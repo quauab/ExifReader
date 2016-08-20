@@ -6,7 +6,7 @@ Read jpeg metadata. This project contains a single class "ExifReader" that can r
   <li>Download project's zip</li>
   <li>Compile project</li>
   <li>Generate jar library</li>
-  <li>Add jar as external jar library</li>
+  <li>Add jar as external library</li>
 </ol>
 
 <h2>Motivation</h2>
