@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -15,6 +16,35 @@ import com.gmail.ichglauben.exifreader.core.utils.abstracts.CustomClass;
 public class ExifReaderTests extends CustomClass {
 	ClassLoader loader = getClass().getClassLoader();
 	ExifReader er;
+	
+	@Test
+	public void testExifReaderGetTagsMapGetTagsListMethods() {
+		Path pathLynx = new File(loader.getResource("lynx.jpg").getFile()).toPath();
+		er = new ExifReader();
+		
+		er.search(pathLynx);
+		Map<String,String> tagsMap = null;
+		
+		tagsMap = er.getTagsMap();
+		assertTrue("Map is null", null != tagsMap);
+		
+		List<String> tagsList = null;
+		
+		tagsList = er.getTagsList();
+		assertTrue("List is null", null != tagsList);
+		assertTrue("Sizes not equal", tagsMap.size() == tagsList.size());
+		
+		println("\t\tTag List");
+		for (String l:tagsList) {
+			println(l);
+		}
+		println("\n");
+		
+		println("\t\tTag Map");
+		for (Map.Entry<String,String> me:tagsMap.entrySet()) {
+			println(me.getKey() + ": " + me.getValue());
+		}
+	}
 	
 	@Test
 	public void testExifReaderInstantiated() {

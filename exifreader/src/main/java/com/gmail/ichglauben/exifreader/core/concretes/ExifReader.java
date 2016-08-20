@@ -42,7 +42,7 @@ public class ExifReader extends CustomClass {
 	public void search(Path f) {
 		if (null != f) {
 			if (JpegValidator.validFile(f)) {
-				clearJim();
+				clearJims();
 				setPath(f.toAbsolutePath().toString());
 				getExchangeData();
 			} else {
@@ -53,7 +53,7 @@ public class ExifReader extends CustomClass {
 	}
 
 	public void search(File f) {
-		clearJim();
+		clearJims();
 		if (null != f) {
 			if (JpegValidator.validFile(f)) {
 				setPath(f.toPath().toAbsolutePath().toString());
@@ -68,7 +68,7 @@ public class ExifReader extends CustomClass {
 	public void search(String f) {
 		if (null != f) {
 			if (JpegValidator.validFile(f)) {
-				clearJim();
+				clearJims();
 				setPath(f);
 				getExchangeData();
 			} else {
@@ -78,7 +78,7 @@ public class ExifReader extends CustomClass {
 		}
 	}
 	
-	private void clearJim() {
+	private void clearJims() {
 		if (null != jims)
 			jims.clear();
 	}
@@ -115,7 +115,7 @@ public class ExifReader extends CustomClass {
 		}
 	}
 
-	protected List<String> getTagsList() {
+	public List<String> getTagsList() {
 		List<String> list = makeList(jims);
 		if (null != list)
 			return list;
@@ -126,6 +126,6 @@ public class ExifReader extends CustomClass {
 		return jims;
 	}
 	
-	public String toString() { return "Abstract Exif Reader"; }
+	public String toString() { return "Exif Reader"; }
 	
 }

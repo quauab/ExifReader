@@ -40,7 +40,6 @@ public abstract class CustomClass {
 		return;
 	}
 
-
 	protected void print(Object o) { 
 		if (null != o)
 			System.out.print(String.valueOf(o));
@@ -60,7 +59,7 @@ public abstract class CustomClass {
 			for (Map.Entry<String, String> me : hash.entrySet()) {
 				String key = String.valueOf(me.getKey());
 				String val = String.valueOf(me.getValue());
-				String item = (key + "|" + val);
+				String item = (key + ": " + val);
 				list.add(item);
 			}
 		}
