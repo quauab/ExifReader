@@ -11,7 +11,7 @@ Read jpeg metadata. This project contains a single class "ExifReader" that can r
 
 <h2>Dependencies</h2>
 <ul>
-  <li>Sanselan 0.97</li>
+  <li>Sanselan 0.97-incubator</li>
 </ul>
 
 <h2>Motivation</h2>
