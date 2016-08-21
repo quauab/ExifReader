@@ -9,6 +9,9 @@ Read jpeg metadata. This project contains a single class "ExifReader" that can r
   <li>Add jar as external library</li>
 </ol>
 
+<h2>Dependencies</h2>
+Sanselan 0.97
+
 <h2>Motivation</h2>
 Worked on a previous project, I need the ability to read a jpeg's metadata. Uploaded to Github as a reference or possible Java library for others.
 
