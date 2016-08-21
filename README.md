@@ -15,7 +15,7 @@ Read jpeg metadata. This project contains a single class "ExifReader" that can r
 </ul>
 
 <h2>Motivation</h2>
-Worked a previous project, the program needed the ability to read a jpeg's metadata. I uploaded to Github a reference or possible Java library for others.
+Worked a previous project, the program needed the ability to read a jpeg's metadata. I uploaded to Github as reference or possible Java library for others.
 
 <h2>Notes</h2>
 The ExifReader class reads a limited amount of tags - see ExifReader
