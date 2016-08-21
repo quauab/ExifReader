@@ -10,7 +10,9 @@ Read jpeg metadata. This project contains a single class "ExifReader" that can r
 </ol>
 
 <h2>Dependencies</h2>
-Sanselan 0.97
+<ul>
+  <li>Sanselan 0.97</li>
+</ul>
 
 <h2>Motivation</h2>
 Worked on a previous project, I need the ability to read a jpeg's metadata. Uploaded to Github as a reference or possible Java library for others.
