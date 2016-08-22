@@ -11,7 +11,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public abstract class CustomClass {
-	private final javax.swing.ImageIcon icon = createImageIcon("/large.gif");
+	private final javax.swing.ImageIcon icon = createImageIcon("/large.gif"); 
 
 	/**
 	 * Default constructor
