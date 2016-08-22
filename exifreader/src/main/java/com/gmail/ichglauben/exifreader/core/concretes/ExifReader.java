@@ -21,7 +21,7 @@ import com.gmail.ichglauben.exifreader.core.utils.concrete.JpegValidator;
 import com.gmail.ichglauben.fileextensionextractor.core.concretes.ExtensionExtractor;
 
 public class ExifReader extends CustomClass {		
-	private Map<String, String> jims = new HashMap<String, String>();
+	private Map<String, String> mapJpegImageMetadata = new HashMap<String, String>();
 	private JpegImageMetadata jpegMetadata;
 	private Path path;
 	private final TagInfo[] tags = new TagInfo[] { TiffConstants.EXIF_TAG_DATE_TIME_ORIGINAL,
@@ -42,7 +42,7 @@ public class ExifReader extends CustomClass {
 	public void search(Path f) {
 		if (null != f) {
 			if (JpegValidator.validFile(f)) {
-				clearJims();
+				clearJim();
 				setPath(f.toAbsolutePath().toString());
 				getEd();
 			} else {
@@ -53,7 +53,7 @@ public class ExifReader extends CustomClass {
 	}
 
 	public void search(File f) {
-		clearJims();
+		clearJim();
 		if (null != f) {
 			if (JpegValidator.validFile(f)) {
 				setPath(f.toPath().toAbsolutePath().toString());
@@ -68,7 +68,7 @@ public class ExifReader extends CustomClass {
 	public void search(String f) {
 		if (null != f) {
 			if (JpegValidator.validFile(f)) {
-				clearJims();
+				clearJim();
 				setPath(f);
 				getEd();
 			} else {
@@ -78,9 +78,9 @@ public class ExifReader extends CustomClass {
 		}
 	}
 	
-	private void clearJims() {
-		if (null != jims)
-			jims.clear();
+	private void clearJim() {
+		if (null != mapJpegImageMetadata)
+			mapJpegImageMetadata.clear();
 	}
 
 	/** Setters */
@@ -108,20 +108,20 @@ public class ExifReader extends CustomClass {
 		for (TagInfo ti : tags) {
 			TiffField field = jim.findEXIFValue(ti);
 			if (null != field) {
-				jims.put(field.getTagName(), field.getValueDescription().toString());
+				mapJpegImageMetadata.put(field.getTagName(), field.getValueDescription().toString());
 			}
 		}
 	}
 
 	public List<String> getTagsList() {
-		List<String> list = makeList(jims);
+		List<String> list = makeList(mapJpegImageMetadata);
 		if (null != list)
 			return list;
 		return null;
 	}
 	
 	public Map<String,String> getTagsMap() {
-		return jims;
+		return mapJpegImageMetadata;
 	}
 	
 	public String toString() { return "Exif Reader"; }
