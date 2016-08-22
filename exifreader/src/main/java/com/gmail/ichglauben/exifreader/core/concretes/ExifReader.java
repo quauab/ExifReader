@@ -83,14 +83,12 @@ public class ExifReader extends CustomClass {
 			jims.clear();
 	}
 
-	/**
-	 * Setters */
+	/** Setters */
 	private void setPath(String f) {
 		path = Paths.get(f);
 	}
 
-	/**
-	 * Getters */
+	/** Getters */
 	private void getExchangeData() {
 		IImageMetadata metadata = null;
 		try {
