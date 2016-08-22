@@ -22,7 +22,7 @@ import com.gmail.ichglauben.fileextensionextractor.core.concretes.ExtensionExtra
 
 public class ExifReader extends CustomClass {		
 	private Map<String, String> mapJpegImageMetadata = new HashMap<String, String>();
-	private JpegImageMetadata jpegMetadata;
+	private JpegImageMetadata jpegImageMetadata;
 	private Path path;
 	private final TagInfo[] tags = new TagInfo[] { TiffConstants.EXIF_TAG_DATE_TIME_ORIGINAL,
 			TiffConstants.EXIF_TAG_XRESOLUTION, TiffConstants.EXIF_TAG_YRESOLUTION, TiffConstants.EXIF_TAG_ORIENTATION,
@@ -94,8 +94,8 @@ public class ExifReader extends CustomClass {
 		try {
 			metadata = Sanselan.getMetadata(path.toFile());
 			if (metadata instanceof JpegImageMetadata) {
-				jpegMetadata = (JpegImageMetadata) metadata;
-				getJim(jpegMetadata);
+				jpegImageMetadata = (JpegImageMetadata) metadata;
+				getJim(jpegImageMetadata);
 			}
 		} catch (ImageReadException ire) {
 			return;
