@@ -106,6 +106,7 @@ public class ExifReader extends CustomClass {
 	}
 	
 	private void getJim(JpegImageMetadata jim) {
+		// get the jpeg's image metadata
 		for (TagInfo ti : tags) {
 			TiffField field = jim.findEXIFValue(ti);
 			if (null != field) {
