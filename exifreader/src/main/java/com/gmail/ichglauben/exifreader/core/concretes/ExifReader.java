@@ -95,7 +95,7 @@ public class ExifReader extends CustomClass {
 			metadata = Sanselan.getMetadata(path.toFile());
 			if (metadata instanceof JpegImageMetadata) {
 				jpegMetadata = (JpegImageMetadata) metadata;
-				getJims(jpegMetadata);
+				getJim(jpegMetadata);
 			}
 		} catch (ImageReadException ire) {
 			return;
@@ -104,7 +104,7 @@ public class ExifReader extends CustomClass {
 		}
 	}
 	
-	private void getJims(JpegImageMetadata jim) {
+	private void getJim(JpegImageMetadata jim) {
 		for (TagInfo ti : tags) {
 			TiffField field = jim.findEXIFValue(ti);
 			if (null != field) {
