@@ -90,6 +90,7 @@ public class ExifReader extends CustomClass {
 
 	/** Getters */
 	private void getEd() {
+		// get the jpeg's exchange data
 		IImageMetadata metadata = null;
 		try {
 			metadata = Sanselan.getMetadata(path.toFile());
