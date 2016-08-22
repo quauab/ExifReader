@@ -44,7 +44,7 @@ public class ExifReader extends CustomClass {
 			if (JpegValidator.validFile(f)) {
 				clearJims();
 				setPath(f.toAbsolutePath().toString());
-				getExchangeData();
+				getEd();
 			} else {
 				throw new IllegalArgumentException("Unsupported file type: "
 						+ ExtensionExtractor.extract(f.toAbsolutePath().toString()));
@@ -57,7 +57,7 @@ public class ExifReader extends CustomClass {
 		if (null != f) {
 			if (JpegValidator.validFile(f)) {
 				setPath(f.toPath().toAbsolutePath().toString());
-				getExchangeData();
+				getEd();
 			} else {
 				throw new IllegalArgumentException("Unsupported file type: "
 						+ ExtensionExtractor.extract(f.toPath().toAbsolutePath().toString()));
@@ -70,7 +70,7 @@ public class ExifReader extends CustomClass {
 			if (JpegValidator.validFile(f)) {
 				clearJims();
 				setPath(f);
-				getExchangeData();
+				getEd();
 			} else {
 				throw new IllegalArgumentException("Unsupported file type: "
 						+ ExtensionExtractor.extract(Paths.get(f).toAbsolutePath().toString()));
@@ -89,7 +89,7 @@ public class ExifReader extends CustomClass {
 	}
 
 	/** Getters */
-	private void getExchangeData() {
+	private void getEd() {
 		IImageMetadata metadata = null;
 		try {
 			metadata = Sanselan.getMetadata(path.toFile());
