@@ -78,6 +78,19 @@ public class ExifReader extends CustomClass {
 		}
 	}
 	
+	public void search(String f, TagInfo[] tags) {
+		if (null != f) {
+			if (JpegValidator.validFile(f)) {
+				clearJim();
+				setPath(f);
+				getEd(tags);
+			} else {
+				throw new IllegalArgumentException("Unsupported file type: "
+						+ ExtensionExtractor.extract(Paths.get(f).toAbsolutePath().toString()));
+			}
+		}
+	}
+	
 	private void clearJim() {
 		if (null != mapJpegImageMetadata)
 			mapJpegImageMetadata.clear();
@@ -105,12 +118,40 @@ public class ExifReader extends CustomClass {
 		}
 	}
 	
+	private void getEd(TagInfo[] tags) {
+		// get the jpeg's exchange data
+		IImageMetadata metadata = null;
+		try {
+			metadata = Sanselan.getMetadata(path.toFile());
+			if (metadata instanceof JpegImageMetadata) {
+				jpegImageMetadata = (JpegImageMetadata) metadata;
+				getJim(jpegImageMetadata,tags);
+			}
+		} catch (ImageReadException ire) {
+			return;
+		} catch (IOException ioe) {
+			return;
+		}
+	}
+	
 	private void getJim(JpegImageMetadata jim) {
 		// get the jpeg's image metadata
 		for (TagInfo ti : tags) {
 			TiffField field = jim.findEXIFValue(ti);
 			if (null != field) {
 				mapJpegImageMetadata.put(field.getTagName(), field.getValueDescription().toString());
+			}
+		}
+	}
+	
+	private void getJim(JpegImageMetadata jim, TagInfo[] tags) {
+		// get the jpeg's image metadata
+		for (TagInfo ti : tags) {
+			TiffField field = jim.findEXIFValue(ti);
+			if (null != field) {
+				mapJpegImageMetadata.put(field.getTagName(), field.getValueDescription().toString());
+			} else {
+				mapJpegImageMetadata.put(ti.name,"Empty Tag");
 			}
 		}
 	}

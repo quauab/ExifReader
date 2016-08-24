@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.sanselan.formats.tiff.constants.TagInfo;
+import org.apache.sanselan.formats.tiff.constants.TiffConstants;
 import org.junit.Test;
 
 import com.gmail.ichglauben.exifreader.core.concretes.ExifReader;
@@ -43,6 +45,20 @@ public class ExifReaderTests extends CustomClass {
 		println("\t\tTag Map");
 		for (Map.Entry<String,String> me:tagsMap.entrySet()) {
 			println(me.getKey() + ": " + me.getValue());
+		}
+	}
+	
+	@Test
+	public void testExifReaderGetSpecifiedTags() {
+		Path pathWildcat = new File(loader.getResource("wildcat.jpg").getFile()).toPath();
+		er = new ExifReader();
+		
+		er.search(pathWildcat.toAbsolutePath().toString(),new TagInfo[] {TiffConstants.EXIF_TAG_GPSINFO});
+		
+		List<String> tags = er.getTagsList();
+		
+		for(String tag:tags) {
+			println(tag);
 		}
 	}
 	
