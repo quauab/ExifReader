@@ -56,10 +56,8 @@ public class ExifReaderTests extends CustomClass {
 		er.search(pathWildcat.toAbsolutePath().toString(),new TagInfo[] {TiffConstants.EXIF_TAG_GPSINFO});
 		
 		List<String> tags = er.getTagsList();
-		
-		for(String tag:tags) {
-			println(tag);
-		}
+
+		assertTrue("Tag exists",tags.get(0).equalsIgnoreCase("gpsinfo: empty tag"));
 	}
 	
 	@Test
