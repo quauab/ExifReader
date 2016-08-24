@@ -150,8 +150,6 @@ public class ExifReader extends CustomClass {
 			TiffField field = jim.findEXIFValue(ti);
 			if (null != field) {
 				mapJpegImageMetadata.put(field.getTagName(), field.getValueDescription().toString());
-			} else {
-				mapJpegImageMetadata.put(ti.name,"Empty Tag");
 			}
 		}
 	}

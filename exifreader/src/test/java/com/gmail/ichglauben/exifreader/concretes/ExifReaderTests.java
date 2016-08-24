@@ -57,7 +57,7 @@ public class ExifReaderTests extends CustomClass {
 		
 		List<String> tags = er.getTagsList();
 
-		assertTrue("Tag exists",tags.get(0).equalsIgnoreCase("gpsinfo: empty tag"));
+		assertTrue("Tag list size above zero",tags.size() == 0);
 	}
 	
 	@Test
