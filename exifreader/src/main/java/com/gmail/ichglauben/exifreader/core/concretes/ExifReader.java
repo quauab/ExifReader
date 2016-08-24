@@ -91,6 +91,32 @@ public class ExifReader extends CustomClass {
 		}
 	}
 	
+	public void search(Path f, TagInfo[] tags) {
+		if (null != f) {
+			if (JpegValidator.validFile(f)) {
+				clearJim();
+				setPath(f.toAbsolutePath().toString());
+				getEd(tags);
+			} else {
+				throw new IllegalArgumentException("Unsupported file type: "
+						+ ExtensionExtractor.extract(f.toAbsolutePath().toString()));
+			}
+		}
+	}
+	
+	public void search(File f, TagInfo[] tags) {
+		if (null != f) {
+			if (JpegValidator.validFile(f)) {
+				clearJim();
+				setPath(f.getAbsolutePath());
+				getEd(tags);
+			} else {
+				throw new IllegalArgumentException("Unsupported file type: "
+						+ ExtensionExtractor.extract(f.toPath().toAbsolutePath().toString()));
+			}
+		}
+	}
+	
 	private void clearJim() {
 		if (null != mapJpegImageMetadata)
 			mapJpegImageMetadata.clear();

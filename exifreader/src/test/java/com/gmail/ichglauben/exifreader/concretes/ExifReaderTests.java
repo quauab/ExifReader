@@ -52,14 +52,26 @@ public class ExifReaderTests extends CustomClass {
 	public void testExifReaderGetSpecifiedTags() {
 		Path pathWildcat = new File(loader.getResource("wildcat.jpg").getFile()).toPath();
 		er = new ExifReader();
-		
-		er.search(pathWildcat.toAbsolutePath().toString(),new TagInfo[] {TiffConstants.EXIF_TAG_GPSINFO});
-		
+
+		er.search(pathWildcat.toAbsolutePath().toString(), new TagInfo[] { TiffConstants.EXIF_TAG_GPSINFO });
+
 		List<String> tags = er.getTagsList();
 
-		assertTrue("Tag list size above zero",tags.size() == 0);
+		assertTrue("Tag list size above zero", tags.size() == 0);
+
+		er.search(pathWildcat, new TagInfo[] { TiffConstants.EXIF_TAG_GPSINFO });
+
+		tags = er.getTagsList();
+
+		assertTrue("Tag list size above zero", tags.size() == 0);
+
+		er.search(pathWildcat.toFile(), new TagInfo[] { TiffConstants.EXIF_TAG_GPSINFO });
+
+		tags = er.getTagsList();
+
+		assertTrue("Tag list size above zero", tags.size() == 0);
 	}
-	
+
 	@Test
 	public void testExifReaderInstantiated() {
 		assertTrue("ExifReader not null", null == er);		
