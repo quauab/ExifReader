@@ -24,15 +24,6 @@ public class ExifReader extends CustomClass {
 	private Map<String, String> mapJpegImageMetadata = new HashMap<String, String>();
 	private JpegImageMetadata jpegImageMetadata;
 	private Path path;
-	private final TagInfo[] tags = new TagInfo[] { TiffConstants.EXIF_TAG_DATE_TIME_ORIGINAL,
-			TiffConstants.EXIF_TAG_XRESOLUTION, TiffConstants.EXIF_TAG_YRESOLUTION, TiffConstants.EXIF_TAG_ORIENTATION,
-			TiffConstants.EXIF_TAG_RESOLUTION_UNIT, TiffConstants.EXIF_TAG_GPSINFO, TiffConstants.EXIF_TAG_ANNOTATIONS,
-			TiffConstants.EXIF_TAG_APERTURE_VALUE, TiffConstants.EXIF_TAG_MAKE, TiffConstants.EXIF_TAG_MODEL,
-			TiffConstants.EXIF_TAG_CAMERA_SERIAL_NUMBER, TiffConstants.GPS_TAG_GPS_LATITUDE_REF,
-			TiffConstants.GPS_TAG_GPS_LATITUDE, TiffConstants.GPS_TAG_GPS_DEST_LATITUDE,
-			TiffConstants.GPS_TAG_GPS_ALTITUDE_REF, TiffConstants.GPS_TAG_GPS_ALTITUDE,
-			TiffConstants.GPS_TAG_GPS_LONGITUDE_REF, TiffConstants.GPS_TAG_GPS_LONGITUDE,
-			TiffConstants.GPS_TAG_GPS_DEST_LONGITUDE, TiffConstants.EXIF_TAG_ARTIST };
 
 	public ExifReader() {}
 
@@ -162,7 +153,7 @@ public class ExifReader extends CustomClass {
 	
 	private void getJim(JpegImageMetadata jim) {
 		// get the jpeg's image metadata
-		for (TagInfo ti : tags) {
+		for (TagInfo ti : TiffConstants.ALL_TAGS) {
 			TiffField field = jim.findEXIFValue(ti);
 			if (null != field) {
 				mapJpegImageMetadata.put(field.getTagName(), field.getValueDescription().toString());

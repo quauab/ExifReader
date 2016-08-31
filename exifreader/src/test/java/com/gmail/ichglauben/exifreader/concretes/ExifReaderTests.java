@@ -184,6 +184,21 @@ public class ExifReaderTests extends CustomClass {
 			println(me.getKey() + "\t" + me.getValue());
 		}
 		
+		println("---------------------------------------------------------------------\n");		
 	}
+	
+	@Test
+	public void testExifReader() {
+		er = new ExifReader();
+		File fileBobcat = new File(loader.getResource("bobcat.jpg").getFile());
+		
+		er.search(fileBobcat);
+		for (String t:er.getTagsList()) {
+			println(t);
+		}
+		
+		println("---------------------------------------------------------------------\n");
+	}
+	
 }
 
