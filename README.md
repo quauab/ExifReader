@@ -18,4 +18,4 @@ Read jpeg metadata. A Java solution for reading a jpeg's exchange information. I
 Worked a previous project, the program needed the ability to read a jpeg's metadata. I uploaded to Github as reference or possible Java library for others.
 
 <h2>Notes</h2>
-The ExifReader class contains methods that will search a jpeg's metadata based on a built-in array of tags and it contains a search method that takes a TagInfo array argument.
+The ExifReader class contains 6 overloaded search methods. 3 will search a jpeg metadata base on the class' supplied TagInfo array and the other 3 will search base on the TagInfo array argument.
