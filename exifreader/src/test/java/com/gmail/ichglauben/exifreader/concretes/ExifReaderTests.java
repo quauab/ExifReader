@@ -46,6 +46,8 @@ public class ExifReaderTests extends CustomClass {
 		for (Map.Entry<String,String> me:tagsMap.entrySet()) {
 			println(me.getKey() + ": " + me.getValue());
 		}
+		
+		println("---------------------------------------------------------------------\n");
 	}
 	
 	@Test
